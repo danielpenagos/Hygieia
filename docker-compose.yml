@@ -16,17 +16,20 @@ services:
       - db
 
   api:
-    build:
-      context: https://github.com/Hygieia/api.git
-      dockerfile: Dockerfile.build
+    image: hygieia_api:latest
+    depends_on:
+      - db
+    #build:
+    #  context: C:\workspaces\java\hygieia\api
+    #  dockerfile: Dockerfile.build
 
   ui:
     build: UI
-    image: hygieia-ui
+    image: hygieia_ui:latest
     depends_on:
       - api
     ports:
-      - "3000:80"
+      - "8082:80"
 
 volumes:
   db-data:
